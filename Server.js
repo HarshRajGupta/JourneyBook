@@ -27,8 +27,13 @@ app.get("/map", function(req, res){
 app.post("/add", function(req, res){
 	var location = {
 		lat : position.coords.latitude,
-		long : position.coords.longitude
-		info : req.
+		long : position.coords.longitude,
+		info : req.body.info
 	};
 	user[req.cookies["User id"]].push(location);
 })
+
+var port = process.env.PORT || 2202;
+app.listen(port, function() {
+    console.log("Listening to the port " + port);
+});
