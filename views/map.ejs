@@ -78,7 +78,7 @@
     }
 
     function showPostion(position) {
-        var location = [position.coords.latitude,  position.coords.longitude];
+        var location = [position.coords.latitude, position.coords.longitude];
         document.getElementById("h3").innerHTML = "Latitude : " + location[0] + " and Longitude : " + position.coords.longitude;
         document.getElementById("button").value = location;
         console.log(location);
@@ -107,41 +107,89 @@
 
     //sample points
 
-var pts2 = [
-    [28.535405, 77.258151],
-    [28.534327, 77.260082],
-    [28.535802, 77.258945],
-    [28.535881, 77.257610]
-];
+    var pts1 = [
+        [28.535330, 77.258141],
+        [28.534377, 77.260092],
+        [28.535872, 77.258985],
+        [28.535881, 77.257610]
+    ];
+    L.marker(new L.LatLng(28.535330, 77.258141), {
+        icon: icon2,
+    }).addTo(map).bindPopup('hello world').openPopup();
+    var polyParam1 = {
+        color: "blue",
+        weight: 4,
+        opacity: 0.5
+    };
+    var poly1 = new L.Polyline(pts1, polyParam1);
 
-var polyParam2 = {
-    color: "red",
-    weight: 4,
-    opacity: 0.5
-};
-var poly2 = new L.Polyline(pts2, polyParam2);
+    map.addLayer(poly1);
+    map.fitBounds(poly1.getBounds());
+    var pts2 = [
+        [28.535230, 77.258141],
+        [28.544377, 77.250092],
+        [28.539872, 77.259985],
+        [28.535881, 77.257610]
+    ];
+    L.marker(new L.LatLng(28.535881, 77.257610), {
+        icon: icon3,
+    }).addTo(map).bindPopup('welcome').openPopup();
 
-map.addLayer(poly2);
-map.fitBounds(poly2.getBounds());
+    L.marker(new L.LatLng(28.539872, 77.259985), {
+        icon: icon3,
+    }).addTo(map).bindPopup('welcome').openPopup();
 
-L.marker(new L.LatLng(28.535405, 77.258151), {
-    icon: icon1,
-}).addTo(map).bindPopup('wow').openPopup();
+    L.marker(new L.LatLng(28.544377, 77.250092), {
+        icon: icon3,
+    }).addTo(map).bindPopup('welcome').openPopup();
 
-L.marker(new L.LatLng(28.534327, 77.260082), {
-    icon: icon1,
-}).addTo(map).bindPopup('wow').openPopup();
+    L.marker(new L.LatLng(28.535230, 77.258141), {
+        icon: icon3,
+    }).addTo(map).bindPopup('welcome').openPopup();
+    var polyParam2 = {
+        color: "black",
+        weight: 4,
+        opacity: 0.5
+    };
+    var poly2 = new L.Polyline(pts2, polyParam2);
+    map.addLayer(poly2);
+    map.fitBounds(poly2.getBounds());
 
-L.marker(new L.LatLng(28.535802, 77.258945), {
-    icon: icon1,
-}).addTo(map).bindPopup('wow').openPopup();
+    var pts3 = [
+        [28.535405, 77.258151],
+        [28.534327, 77.260082],
+        [28.535802, 77.258945],
+        [28.535881, 77.257610]
+    ];
 
-L.marker(new L.LatLng(28.535881, 77.257610), {
-    icon: icon1,
-}).addTo(map).bindPopup('wow').openPopup();
+    var polyParam3 = {
+        color: "red",
+        weight: 4,
+        opacity: 0.5
+    };
+    var poly3 = new L.Polyline(pts3, polyParam3);
+
+    map.addLayer(poly3);
+    map.fitBounds(poly3.getBounds());
+
+    L.marker(new L.LatLng(28.535405, 77.258151), {
+        icon: icon1,
+    }).addTo(map).bindPopup('wow').openPopup();
+
+    L.marker(new L.LatLng(28.534327, 77.260082), {
+        icon: icon1,
+    }).addTo(map).bindPopup('wow').openPopup();
+
+    L.marker(new L.LatLng(28.535802, 77.258945), {
+        icon: icon1,
+    }).addTo(map).bindPopup('wow').openPopup();
+
+    L.marker(new L.LatLng(28.535881, 77.257610), {
+        icon: icon1,
+    }).addTo(map).bindPopup('wow').openPopup();
 
 
-<% for(var i = 0; i < user.length; i++) { if(i === id) { %>
+    <% for(var i = 0; i < user.length; i++) { if(i === id) { %>
 
     var pts = [];
 
