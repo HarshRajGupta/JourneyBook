@@ -1,0 +1,136 @@
+<html lang="en" xml:lang="en">
+
+<head>
+    <title>Tourist hub</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style type="text/css">
+    <style>#map {
+        height: 77vh;
+        width: 100%;
+    }
+
+    h3 {
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: 35px;
+        letter-spacing: 2px;
+        margin-bottom: 0;
+        padding-bottom: 1rem;
+        text-align: center;
+    }
+
+    form {
+        width: 100%;
+        margin-top: 1rem;
+        display: grid;
+        grid-template-columns: auto auto;
+        text-align: center;
+        justify-content: space-around;
+    }
+
+    form input {
+        border-radius: 25px;
+        text-align: center;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: 25px;
+        letter-spacing: 1px;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    form img {
+        width: 40px;
+    }
+
+    form button {
+        background: none;
+        border: none;
+        margin: 0;
+        padding: 0;
+        cursor: pointer;
+        width: max-content;
+    }
+    </style>
+    <script src="https://apis.mapmyindia.com/advancedmaps/v1/33OkryzDZsJICBiHWE71Wz1LSEHDZ5RwgDIcXSLSfZrvfYERR5j0qnvAb_oysRGnVtmKu0styf66OWSBaHsPJQ==/map_load?v=1.5">
+    </script>
+</head>
+
+<body>
+    <h3>HarbourX Demo Project</h3>
+    <div id="map"></div>
+    <form method="POST" action="/add">
+        <input type="info" id="info" name="info" placeholder="info" required />
+        <button value="loc" name="button">
+            <img src="https://user-images.githubusercontent.com/85221003/134793797-a2090232-0b6d-4fbe-b510-3d72c947ac80.gif" alt="+">
+        </button>
+    </form>
+    <script>
+    var map = new MapmyIndia.Map('map', {
+        center: [28.549948, 77.268241],
+        zoomControl: true,
+        hybrid: true
+    });
+
+    var icon1 = L.icon({
+        iconUrl: 'https://user-images.githubusercontent.com/85221003/134791427-74c95d3e-60c5-4a5c-9b52-0af596673904.png',
+        iconSize: [30, 30],
+    });
+
+    var icon2 = L.icon({
+        iconUrl: 'https://user-images.githubusercontent.com/85221003/134791416-a15b7686-eb39-439b-b59c-62d80a7adacd.png',
+        iconSize: [30, 30],
+    });
+
+    var icon3 = L.icon({
+        iconUrl: 'https://user-images.githubusercontent.com/85221003/133186922-a294225c-a179-4088-ae53-a932b5d21c99.png',
+        iconSize: [30, 30],
+    });
+
+    <%- for(var i = 0; i < user.length; i++) { if(i === id) { -%>
+
+    var pts = [];
+
+    <%- for(var j = 0; j < user[i].length; i++) { -%>
+
+    pts.push(user[i][j].lat, user[i][j].long);
+    L.marker(new L.LatLng(user[i][j].lat, user[i][j].long), {
+        icon: icon2,
+    }).addTo(map).bindPopup(user[i][j].info).openPopup();
+
+    <%- } -%>
+
+    var polyParam = {
+        color: "red",
+        weight: 3,
+        opacity: 0.5
+    };
+    var poly = new L.Polyline(pts, polyParam);
+
+    map.addLayer(poly);
+    map.fitBounds(poly.getBounds());
+
+    <%- } else { -%>
+
+    <%- for(var j = 0; j < user[i].length; i++) { -%>
+
+    pts.push(user[i][j].lat, user[i][j].long);
+    L.marker(new L.LatLng(user[i][j].lat, user[i][j].long), {
+        icon: icon1,
+    }).addTo(map).bindPopup(user[i][j].info).openPopup();
+
+    <%- } -%>
+
+    var polyParam = {
+        color: "blue",
+        weight: 3,
+        opacity: 0.5
+    };
+    var poly = new L.Polyline(pts, polyParam);
+
+    map.addLayer(poly);
+    map.fitBounds(poly.getBounds());
+
+    <%- } } -%>
+    </script>
+</body>
+
+</html>
