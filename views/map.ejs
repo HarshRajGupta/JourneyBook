@@ -4,9 +4,13 @@
     <title>Tourist hub</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <style type="text/css">
-    <style>#map {
+    #map {
         height: 77vh;
         width: 100%;
+    }
+
+    form input:focus{
+          border: none;
     }
 
     h3 {
@@ -85,18 +89,18 @@
         iconSize: [30, 30],
     });
 
-    <%- for(var i = 0; i < user.length; i++) { if(i === id) { -%>
+    <% for(var i = 0; i < user.length; i++) { if(i === id) { %>
 
     var pts = [];
 
-    <%- for(var j = 0; j < user[i].length; i++) { -%>
+    <% for(var j = 0; j < user[i].length; i++) { %>
 
     pts.push(user[i][j].lat, user[i][j].long);
     L.marker(new L.LatLng(user[i][j].lat, user[i][j].long), {
         icon: icon2,
     }).addTo(map).bindPopup(user[i][j].info).openPopup();
 
-    <%- } -%>
+    <% } %>
 
     var polyParam = {
         color: "red",
@@ -108,16 +112,16 @@
     map.addLayer(poly);
     map.fitBounds(poly.getBounds());
 
-    <%- } else { -%>
+    <% } else { %>
 
-    <%- for(var j = 0; j < user[i].length; i++) { -%>
+    <% for(var j = 0; j < user[i].length; i++) { %>
 
     pts.push(user[i][j].lat, user[i][j].long);
     L.marker(new L.LatLng(user[i][j].lat, user[i][j].long), {
         icon: icon1,
     }).addTo(map).bindPopup(user[i][j].info).openPopup();
 
-    <%- } -%>
+    <% } %>
 
     var polyParam = {
         color: "blue",
@@ -129,7 +133,7 @@
     map.addLayer(poly);
     map.fitBounds(poly.getBounds());
 
-    <%- } } -%>
+    <% } } %>
     </script>
 </body>
 
